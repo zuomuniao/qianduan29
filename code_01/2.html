@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 正则.test(字符串) 用来验证字符串是不是符合规则 布尔值 
+        // 正则.exec(字符串) 提取分组 
+        // ajax原理 exec 提取分组
+        var str = '<style>body{background-color:red;}</style>'
+        // /[abc]/
+        // /s -> 空格
+        // /S -> 非空格
+        var reg = /<style>([\s\S]*)<\/style>/
+        // console.log(reg.test(str));
+        console.log(reg.exec(str));
+    </script>
+</body>
+
+</html>
