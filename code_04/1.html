@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   function add(a, b) {
+      //     if (typeof a !== 'number' || typeof b !== 'number') {
+      //       throw new Error('参数必须都是数字类型')
+      //     }
+      //     return a + b
+      //   }
+
+      //   add({}, 2)
+
+      //   错误不重要 异常进行捕获
+      //   做的是一个服务器 其中一个路由有异常 如果不处理 全部崩溃了 100个路由
+
+      //   把可能会出错的代码可以放在try中试一试，如果有错就会到catch中
+      // try {
+      //   throw new Error('参数必须都是数字类型')
+      // } catch (err) {
+      //   console.log(err)
+      // }
+      // console.log(123)
+
+      class Person {
+        constructor(name, age) {
+          this.name = name
+          this.age = age
+        }
+      }
+
+      var zs = new Person('张三', 20)
+      console.log(zs)
+    </script>
+  </body>
+</html>

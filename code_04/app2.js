@@ -17,12 +17,12 @@ app.get('/bcd/:id', (req, res) => {
   console.log(req.params)
   res.send('ok')
 })
-app.listen(3000,() => console.log('服务器开启成功'))
+app.listen(3000, () => console.log('服务器开启成功'))
 
 // url参数
 // url?key=value&key=value
-// http://baidu.com/list?id=100
-// http://baidu.com/list/100
+// http://baidu.com/list?id=100 req.query
+// http://baidu.com/list/100 req.params
 
 //baidu.com/list?username=zs&age=20 查询参数 查询 ? query
 //baidu.com/list/zs/10 参数是路径的一部分 路径参数（参数是属于路径url一部分） 动态参数

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const list = [
+        {
+          id: 1,
+          bookname: '西游记',
+          author: '吴承恩',
+          publisher: '北京图书出版社',
+        },
+        {
+          id: 2,
+          bookname: '红楼梦',
+          author: '曹雪芹',
+          publisher: '上海图书出版社',
+        },
+        {
+          id: 3,
+          bookname: '三国演义',
+          author: '罗贯中',
+          publisher: '北京图书出版社',
+        },
+      ]
+
+      //   list.forEach((item) => console.log(item))
+      //   var index = list.findIndex((item) => {
+      //     if (item.id === 2) {
+      //       return true
+      //     } else {
+      //       return false
+      //     }
+      //   })
+      //   console.log(index)
+
+      //   var index = list.findIndex((item) => {
+      //     return item.id === 2
+      //   })
+
+      var index = list.findIndex((item) => item.id === 2)
+
+      console.log(index)
+    </script>
+  </body>
+</html>

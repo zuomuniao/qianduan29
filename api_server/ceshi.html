@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.1/jquery.js"></script>
+    <script>
+      // 同源：协议、端口、域名必须全部一样才算同源，否则就跨域
+      // 跨域ajax拿就会报错
+
+      // $.ajax({
+      //   method: 'GET',
+      //   headers: {
+      //     a: 100, //Content-Type
+      //   },
+      //   url: 'http://127.0.0.1:3000/api/getbooks',
+      //   success: function (res) {
+      //     console.log(res)
+      //   },
+      // })
+
+      $.ajax({
+        method: 'PUT',
+        headers: {
+          a: 100, //Content-Type
+        },
+        url: 'http://127.0.0.1:3000/api/getbooks',
+        success: function (res) {
+          console.log(res)
+        },
+      })
+    </script>
+  </body>
+</html>
