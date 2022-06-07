@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://unpkg.com/axios@0.27.2/dist/axios.min.js"></script>
+    <script>
+      //   axios.defaults.baseURL = 'https://ajax-base-api-t.itheima.net/api'
+      //   //   function fn() {
+      //   //     axios.get('/getbooks?id=1').then(function (res) {
+      //   //       console.log(res)
+      //   //     })
+      //   //   }
+      //   //   fn()
+      //   //   在promise实例前面加了await,返回值就是then中的返回值
+      //   async function fn() {
+      //     const res = await axios.get('/getbooks?id=1')
+      //     console.log(res) //加了await之后,res得到的是promise.then中的结果
+      //   }
+      //   fn()
+
+      //   function timeout(delay) {
+      //     return new Promise(function (resolve, reject) {
+      //       setTimeout(function () {
+      //         console.log('定时器执行完成')
+      //         resolve(100)
+      //       }, delay)
+      //     })
+      //   }
+
+      //   function fn() {
+      //     const res = timeout(2000)
+      //     console.log(100)
+      //   }
+      //   fn()
+
+      function timeout(delay) {
+        return new Promise(function (resolve, reject) {
+          setTimeout(function () {
+            console.log('定时器执行完成')
+            resolve(100)
+          }, delay)
+        })
+      }
+
+      //   async,await用同步的写法写异步代码
+      async function fn() {
+        const res = await timeout(2000)
+        console.log(100) //await就是暂停
+      }
+      fn()
+
+      //   function fn() {
+      //     timeout(2000).then(function (res) {
+      //       console.log(100)
+      //     })
+      //   }
+      //   fn()
+
+      //   setTimeout(() => {
+      //     console.log(1)
+      //   }, 1000)
+
+      //   console.log(2)
+
+      //   async中的await后面的代码本质相当于是在前面的promise中then中写的
+    </script>
+  </body>
+</html>

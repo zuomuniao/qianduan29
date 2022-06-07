@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var p = new Promise(function (resolve, reject) {
+        resolve('成功的结果')
+      })
+
+      //   then函数返回值还是一个promise promise的情况有6种情况
+      // 1. 没有返回值,就是已兑现,但是result是undefined
+      // 2. 返回一个数据,就是已兑现,result就是返回的数据
+      // 3. return Promise.resolve(100)和return 100等价
+      //   4. 返回值如果是一个待定状态的promise,第二个promise不会执行了
+      // 5. 返回值是 return error 相当于 return Promise.resolve(error)
+      //   6. 只有return Promise.reject(new Error('失败的结果'))才会到catch
+
+      //   1. 不写return 2. return 100 3. return Promise.resolve() -> 成功
+      //   2. return Promise.reject() 或 throw new Error() -> 失败
+      //   3. return 待定 -> 不会执行then
+      p.then(function (result) {
+        console.log(result)
+        return Promise.reject(new Error('失败的结果'))
+      })
+        .then(function (result) {
+          console.log(result)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    </script>
+  </body>
+</html>

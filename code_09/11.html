@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://unpkg.com/axios@0.27.2/dist/axios.min.js"></script>
+    <script>
+      // 同步写法来写异步的代码,本质还是异步
+      //   await实现了消灭了then
+      //   callback -> promise then写法 -> async,await写法
+      //   async 可以单独使用 但是await必须配合async来使用
+      async function fn() {
+        const res1 = await axios.get('/getbooks?id=1')
+        console.log(res1)
+        const res2 = await axios.get('/getbooks?id=2')
+        console.log(res2)
+      }
+      fn()
+
+      function fn() {
+        axios
+          .get('/getbooks?id=1')
+          .then(function (res1) {
+            console.log(res1)
+            return axios.get('/getbooks?id=2')
+          })
+          .then(function (res2) {
+            console.log(res2)
+          })
+      }
+      fn()
+
+      //   const a = 1
+      //   console.log(a);
+      //   const b = 2
+      //   console.log(b);
+    </script>
+  </body>
+</html>

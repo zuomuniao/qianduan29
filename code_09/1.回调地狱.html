@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   异步我们只学过用callback来解决，但是callback会导致callback hell
+      setTimeout(() => {
+        console.log(1)
+        setTimeout(() => {
+          console.log(2)
+          setTimeout(() => {
+            console.log(2)
+            setTimeout(() => {
+              console.log(2)
+              setTimeout(() => {
+                console.log(2)
+                setTimeout(() => {
+                  console.log(2)
+                  setTimeout(() => {
+                    console.log(2)
+                    setTimeout(() => {
+                      console.log(2)
+                    }, 500)
+                  }, 500)
+                }, 500)
+              }, 500)
+            }, 500)
+          }, 500)
+        }, 500)
+      }, 1000)
+
+      //   promise 因为这个可以解决回调地狱的问题
+      function fn(delay) {
+        return new Promise((resolve, reject) => {
+          setTimeout(function () {
+            resolve()
+          }, delay)
+        })
+      }
+      fn(1000)
+        .then(() => {
+          console.log(1)
+          return fn(2000)
+        })
+        .then(() => {
+          console.log(2)
+          return fn(500)
+        })
+        .then(() => {
+          console.log(3)
+          return fn(600)
+        })
+        .then(() => {
+          console.log(4)
+        })
+
+      // promis有三种状态 待定(pending) 已兑现(fulfilled) 已拒绝(rejected)
+      //   当前 -> pending
+    </script>
+  </body>
+</html>

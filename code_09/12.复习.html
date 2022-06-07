@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://unpkg.com/axios@0.27.2/dist/axios.min.js"></script>
+    <script>
+      //   callback -> promise -> async,await(异步的终极解决方案)
+      axios.defaults.baseURL = 'https://ajax-base-api-t.itheima.net/api'
+      //   axios
+      //     .get('/getbooks?id=1')
+      //     .then((res1) => {
+      //       console.log(res1)
+      //       return axios.get('/getbooks?id=2')
+      //     })
+      //     .then((res2) => {
+      //       console.log(res2)
+      //     })
+
+      //  function fn() {
+      //   //await promise实例
+      //   try{
+      //     const res1 = await axios.get('/getbooks?id=1')
+      //     console.log(res1)
+      //     const res2 = await axios.get('/getbooks?id=2')
+      //     console.log(res2)
+      //   }catch(err){
+      //       console.log(err);
+      //   }
+      // }
+      // fn()
+
+      //   new Promise(function (resolve, reject) {
+      //     resolve('成功的结果')
+      //   })
+      //     .then(function (res) {
+      //       console.log(res)
+      //     })
+      //     .catch((error) => {
+      //       console.log(error)
+      //     })
+
+      // 创建一个promise实例
+      // 第一种写法
+      //   new Promise(function (resolve, reject) {
+      //     resolve('成功的结果')
+      //   })
+      //   // 第二种写法
+      //   //   Promise.resolve('成功的结果')
+      //   //   第三种写法
+      //   Promise.reject('失败的结果')
+
+      //   new Promise(function (resolve, reject) {
+      //     resolve('成功的结果')
+      //   })
+      //     .then(function (res) {
+      //       console.log(res)
+      //       //   return 100
+      //       //   return Promise.resolve(100)
+      //       return Promise.reject('失败')
+      //     })
+      //     .then(function (res) {})
+      //     .catch((error) => {
+      //       console.log(error)
+      //     })
+
+      //   //   var obj = {
+      //   //     fn() {
+      //   //       console.log(123)
+      //   //       return this
+      //   //     },
+      //   //   }
+
+      //   //   obj.fn().fn().fn()
+
+      // promise.then.catch()
+      // async function fn(){
+      //     try{
+      //         await promise
+      //     }catch(err){
+
+      //     }
+      // }
+
+      //   new Promise(function (resolve, reject) {
+      //     console.log(1)
+      //     resolve(2)
+      //   }).then(function (res) {
+      //     console.log(res)
+      //   })
+      //   console.log(3)
+
+      //   1. 同步 微任务 宏任务排队
+      //   2. 微任务
+      //   3. 宏任务
+
+      setTimeout(() => {
+        console.log(1)
+      })
+      async function fn() {
+        console.log(2)
+        const res = await 3
+        console.log(res)
+      }
+      fn()
+      new Promise((resolve, reject) => {
+        console.log(4)
+        resolve()
+      }).then(() => {
+        console.log(5)
+      })
+      console.log(6)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://unpkg.com/axios@0.27.2/dist/axios.min.js"></script>
+    <script>
+      //   后面我们发ajax都会用axios
+      //   1. 不可能用原生写法 因为原生太复杂
+      //   2. 也不可能用 $.ajax 因为jquery太大了,我们后面项目如果用$.ajax,jq这么多功能我们全部用不上,只有$.ajax太浪费了
+      //   后面只会用axios, 功能单一基于promise的只能用来发ajax的库
+      //   以后只要看到别人代码中有then,你就要明白前面就是promise
+      axios.defaults.baseURL = 'https://ajax-base-api-t.itheima.net/api'
+      //保证永远先拿回西游记数据再拿红楼梦
+      axios
+        .get('/getbooks?id=1')
+        .then(function (res) {
+          console.log(res)
+          return axios.get('/getbooks?id=2')
+        })
+        .then(function (res) {
+          console.log(res)
+        })
+    </script>
+  </body>
+</html>

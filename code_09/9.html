@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // a=a+1 a++
+      // promise确实解决了回调地狱的问题,但是写起来不方便
+      //   function fn() {
+      //     return new Promise(function (resolve, reject) {
+      //       var bool = true
+      //       if (bool) {
+      //         resolve('成功的结果')
+      //       } else {
+      //         reject('失败的结果')
+      //       }
+      //     })
+      //   }
+
+      //   async就是promise的语法糖 简化版
+      //   async function fn() {
+      //     var bool = true
+      //     if (bool) {
+      //       return '成功的结果'
+      //     } else {
+      //       return Promise.reject(new Error('失败的结果'))
+      //     }
+      //   }
+
+      //   fn()
+      //     .then(function (res) {
+      //       console.log(res)
+      //     })
+      //     .catch(function (error) {
+      //       console.log(error)
+      //     })
+
+      //我们一般把前面带有async的称为异步函数(区别于普通函数)
+      async function fn() {
+        return 100
+      }
+
+      console.log(fn()) //已兑现的promise实例
+    </script>
+  </body>
+</html>

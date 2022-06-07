@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. 待定状态不会主动调用then方法
+      //   2. 已兑现会执行then第一个callback
+      //   3. 已拒绝会执行then的第二个callback
+      //   二个callback只会执行一个
+      var p = new Promise(function (resolve, reject) {
+        resolve('成功的结果')
+        // reject('失败的结果')
+      })
+      //   p.then(成功的回调).catch(失败的回调)
+      p.then((result) => {
+        console.log(1)
+        console.log(result)
+      }).catch((error) => {
+        console.log(error)
+      })
+      //   p.then(function (result) {
+      //     console.log(1)
+      //     console.log(result)
+      //   }).catch(function (error) {
+      //     console.log(error)
+      //   })
+      //   p.then(
+      //     function (result) {
+      //       console.log(1)
+      //       console.log(result)
+      //     },
+      //     function (error) {
+      //       console.log(2)
+      //       console.log(error)
+      //     }
+      //   )
+    </script>
+  </body>
+</html>
