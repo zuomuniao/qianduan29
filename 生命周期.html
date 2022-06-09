@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <div id="app">
+      <p>{{ message }}</p>
+      <button @click="change()">change改变数据</button>
+      <button @click="destr()">destroy销毁实例</button>
+      <hr />
+      <button @click="getDom()">获取实例dom</button>
+      <button @click="getData()">获取实例data</button>
+      <button @click="getMethods()">获取实例methods</button>
+    </div>
+    <script src="./vue.js"></script>
+    <script type="text/javascript">
+      var obj = { 'el: ': this.$el, 'data: ': this.data }
+
+      function Life(name, el, data, methods) {
+        this['生命周期钩子函数'] = name
+        this['el (实例挂载的dom)'] = el
+        this['data (实例的数据)'] = data
+        this['methods (实例中的方法)'] = methods
+      }
+
+      var app = new Vue({
+        el: '#app',
+        data: {
+          message: 66,
+        },
+        beforeCreate: function () {
+          var obj = new Life('beforeCreate', this.$el, this.message, this.test)
+          console.table({ 创建前: obj })
+        },
+        created: function () {
+          var obj = new Life('created', this.$el, this.message, this.test)
+          console.table({ 创建后: obj })
+        },
+        beforeMount: function () {
+          var obj = new Life('beforeMount', this.$el, this.message, this.test)
+          console.table({ 挂载前: obj })
+
+          alert(
+            '当前阶段处于 beforeMount ,此时虚拟 dom 已经创建完成，即将开始渲染。'
+          )
+        },
+        mounted: function () {
+          // 实例被挂载后调用，这时 el 被新创建的 vm.$el 替换了。如果根实例挂载到了一个文档内的元素上，当 mounted 被调用时 vm.$el 也在文档内。
+          var obj = new Life('mounted', this.$el, this.message, this.test)
+          console.table({ 挂载后: obj })
+        },
+        beforeUpdate: function () {
+          // 数据更新时调用，发生在虚拟 DOM 打补丁之前。这里适合在更新之前访问现有的 DOM，比如手动移除已添加的事件监听器。
+          var obj = new Life('beforeUpdate', this.$el, this.message, this.test)
+          console.table({ '数据更新，DOM 重新渲染前': obj })
+
+          alert(
+            '当前阶段处于 beforeUpdate ,此时实例中的数据已更新，但 dom 上的数据还未更新。'
+          )
+        },
+        updated: function () {
+          // 当这个钩子被调用时，组件 DOM 已经更新，所以你现在可以执行依赖于 DOM 的操作。然而在大多数情况下，你应该避免在此期间更改状态。如果要相应状态改变，通常最好使用计算属性或 watcher 取而代之。
+          var obj = new Life('updated', this.$el, this.message, this.test)
+          console.table({ '数据更新，DOM 重新渲染后': obj })
+
+          // 注意 updated 不会保证所有的子组件也都一起被重绘。如果你希望等到整个视图都重绘完毕，可以在 updated 里使用 vm.$nextTick：
+
+          // 将回调延迟到下次 DOM 更新循环之后执行。在修改数据之后立即使用它，然后等待 DOM 更新。
+          // 它跟全局方法 Vue.nextTick 一样，不同的是回调的 this 自动绑定到调用它的实例上。
+          this.$nextTick(function () {
+            // DOM 现在更新了
+            // `this` 绑定到当前实例
+            console.log('这是 update 中的回调')
+          })
+        },
+        beforeDestroy: function () {
+          this.change()
+          // 实例销毁之前调用。在这一步，实例仍然完全可用。
+          var obj = new Life('beforeUpdate', this.$el, this.message, this.test)
+          console.table({ '实例销毁前，此时实例还完全可用': obj })
+        },
+        destroyed: function () {
+          this.message = 123
+          // 实例销毁后调用。该钩子被调用后，对应 Vue 实例的所有指令都被解绑，所有的事件监听器被移除，所有的子实例也都被销毁。
+          var obj = new Life('beforeUpdate', this.$el, this.message, this.test)
+          console.table({ 实例销毁后: obj })
+
+          this.test()
+        },
+        methods: {
+          test() {
+            console.log('666')
+          },
+          change() {
+            this.message++
+            console.log(this.message)
+          },
+          destr() {
+            this.$destroy()
+          },
+          getDom() {
+            console.log(this.$el)
+          },
+          getData() {
+            console.log(this.message)
+          },
+          getMethods() {
+            console.log(this.test)
+          },
+        },
+      })
+    </script>
+  </body>
+</html>
